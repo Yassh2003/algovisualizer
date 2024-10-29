@@ -17,6 +17,7 @@ class Navbar extends React.Component {
             { value: 7, type: 'Shell Sort' },
             { value: 8, type: 'Twist Sort'},
             { value: 9, type: 'Comb Sort'},
+            { value: 10, type: 'Cocktail Shaker Sort'},
 		],
 		lengths: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
 		speeds: [0.50, 0.75, 1.00, 2.00, 4.00]
