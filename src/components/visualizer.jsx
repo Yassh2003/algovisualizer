@@ -20,6 +20,7 @@ import pause from './helper/pause';
 import generator from './helper/generator';
 import {ALGORITHM, SPEED, SIZE, SWAP, CURRENT, NORMAL, DONE} from './helper/constants';
 import { getKeysCopy } from './helper/keys.js';
+import { combSort } from './algorithms/combSort.js';
 
 class Visualizer extends React.Component {
     /*  each element in the list contains a <key, classType> where:
@@ -121,6 +122,9 @@ class Visualizer extends React.Component {
         }
         if(Name === 8) {
             moves = await twistSort(array, array.length);
+        }
+        if(Name === 9) {
+            moves = await combSort(array, array.length);
         }
         return moves;
     };
