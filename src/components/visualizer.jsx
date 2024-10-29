@@ -8,6 +8,7 @@ import { mergeSort } from './algorithms/mergeSort.js';
 import { quickSort } from './algorithms/quickSort.js';
 import { heapSort } from './algorithms/heapSort.js';
 import { twistSort } from './algorithms/twistSort.js';
+import { shellSort } from './algorithms/shellSort.js';
 
 // components
 import Navbar from './navbar';
@@ -116,6 +117,9 @@ class Visualizer extends React.Component {
             moves = await heapSort(array, array.length);
         }
         if(Name === 7) {
+            moves = await shellSort(array, array.length);
+        }
+        if(Name === 8) {
             moves = await twistSort(array, array.length);
         }
         return moves;
@@ -152,25 +156,48 @@ class Visualizer extends React.Component {
     };
 
     // for visualizing swapping based sorting algorithms
-    visualizeMovesBySwapping = async(Moves) => {
-        while(Moves.length > 0) {
+    visualizeMovesBySwapping = async (Moves) => {
+        while (Moves.length > 0) {
             let currMove = Moves[0];
-            // if container doesn't contains 3 elements then return
-            if(currMove.length !== 3) {
-                await this.visualizeMoves(Moves);
-                return;
+            
+            // Check for invalid move length to break recursion safely
+            if (currMove.length !== 3) {
+                return; // Exit if the current move does not contain exactly 3 elements
             }
-            else {
-                let indexes = [currMove[0], currMove[1]];
-                await this.updateElementClass(indexes, CURRENT);
-                if(currMove[2] === SWAP) {
-                    await this.updateList(indexes);
-                }
-                await this.updateElementClass(indexes, NORMAL);
+
+            let indexes = [currMove[0], currMove[1]];
+            await this.updateElementClass(indexes, CURRENT);
+
+            if (currMove[2] === SWAP) {
+                await this.updateList(indexes);
             }
-            Moves.shift();
+
+            await this.updateElementClass(indexes, NORMAL);
+            Moves.shift(); // Remove the processed move
         }
     };
+
+
+    // for visualizing swapping based sorting algorithms
+    // visualizeMovesBySwapping = async(Moves) => {
+    //     while(Moves.length > 0) {
+    //         let currMove = Moves[0];
+    //         // if container doesn't contains 3 elements then return
+    //         if(currMove.length !== 3) {
+    //             await this.visualizeMoves(Moves);
+    //             return;
+    //         }
+    //         else {
+    //             let indexes = [currMove[0], currMove[1]];
+    //             await this.updateElementClass(indexes, CURRENT);
+    //             if(currMove[2] === SWAP) {
+    //                 await this.updateList(indexes);
+    //             }
+    //             await this.updateElementClass(indexes, NORMAL);
+    //         }
+    //         Moves.shift();
+    //     }
+    // };
 
     // swapping the values for current move
     updateList = async(indexes) => {
