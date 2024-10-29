@@ -9,6 +9,8 @@ import { quickSort } from './algorithms/quickSort.js';
 import { heapSort } from './algorithms/heapSort.js';
 import { twistSort } from './algorithms/twistSort.js';
 import { shellSort } from './algorithms/shellSort.js';
+import { combSort } from './algorithms/combSort.js';
+import { cocktailShakerSort } from './algorithms/cocktailShakerSort.js';
 
 // components
 import Navbar from './navbar';
@@ -20,8 +22,6 @@ import pause from './helper/pause';
 import generator from './helper/generator';
 import {ALGORITHM, SPEED, SIZE, SWAP, CURRENT, NORMAL, DONE} from './helper/constants';
 import { getKeysCopy } from './helper/keys.js';
-import { combSort } from './algorithms/combSort.js';
-import { cocktailShakerSort } from './algorithms/cocktailShakerSort.js';
 
 class Visualizer extends React.Component {
     /*  each element in the list contains a <key, classType> where:
